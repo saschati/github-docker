@@ -31,13 +31,13 @@ jobs:
 
       - name: Extract metadata (tags, labels) for Docker php-fpm
         id: meta-php-fpm
-        uses: docker/metadata-action@5
+        uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/php-fpm
 
       - name: Extract metadata (tags, labels) for Docker php-cli
         id: meta-php-cli
-        uses: docker/metadata-action@5
+        uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/php-cli
 
