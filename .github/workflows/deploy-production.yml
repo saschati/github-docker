@@ -19,6 +19,8 @@ jobs:
       packages: write
 
     steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
 #      - name: Checkout repository
 #        uses: actions/checkout@v4
 
@@ -48,7 +50,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: "{{defaultContext}}:./app/docker"
-          dockerfile: ./development/php-fpm/Dockerfile
+          dockerfile: ./app/docker/development/php-fpm/Dockerfile
           push: true
           tags: ${{ steps.meta-php-fpm.outputs.tags }}
           labels: ${{ steps.meta-php-fpm.outputs.labels }}
@@ -58,7 +60,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: "{{defaultContext}}:./app/docker"
-          dockerfile: ./development/php-cli/Dockerfile
+          dockerfile: ./app/docker/development/php-cli/Dockerfile
           push: true
           tags: ${{ steps.meta-php-cli.outputs.tags }}
           labels: ${{ steps.meta-php-cli.outputs.labels }}
