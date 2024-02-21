@@ -36,7 +36,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: "{{defaultContext}}:./app/docker"
-          dockerfile: "{{defaultContext}}:./app/docker/development/php-fpm/Dockerfile"
+          dockerfile: development/php-fpm/Dockerfile
           push: true
           tags: ${{ env.REGISTRY }}/php-fpm:${{ env.TAG }},${{ env.REGISTRY }}/php-fpm:latest
 
@@ -44,7 +44,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: "{{defaultContext}}:./app/docker"
-          dockerfile: "{{defaultContext}}:./app/docker/development/php-cli/Dockerfile"
+          dockerfile: development/php-cli/Dockerfile
           push: true
           tags: ${{ env.REGISTRY }}/php-cli:${{ env.TAG }},${{ env.REGISTRY }}/php-cli:latest
 
