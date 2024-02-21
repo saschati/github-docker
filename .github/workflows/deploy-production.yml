@@ -35,16 +35,16 @@ jobs:
       - name: Build and push Docker php-fpm image
         uses: docker/build-push-action@v5
         with:
-          context: "{{defaultContext}}:./app/docker"
-          dockerfile: ./development/php-fpm/Dockerfile
+          context: ./app/docker
+          dockerfile: ./app/docker/development/php-fpm/Dockerfile
           push: true
           tags: ${{ env.REGISTRY }}/php-fpm:${{ env.TAG }},${{ env.REGISTRY }}/php-fpm:latest
 
       - name: Build and push Docker php-cli image
         uses: docker/build-push-action@v5
         with:
-          context: "{{defaultContext}}:./app/docker"
-          dockerfile: ./development/php-cli/Dockerfile
+          context: ./app/docker
+          dockerfile: ./app/docker/development/php-cli/Dockerfile
           push: true
           tags: ${{ env.REGISTRY }}/php-cli:${{ env.TAG }},${{ env.REGISTRY }}/php-cli:latest
 
