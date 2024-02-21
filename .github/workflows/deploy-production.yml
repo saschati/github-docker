@@ -19,11 +19,10 @@ jobs:
       packages: write
 
     steps:
-#      - name: Checkout repository
-#        uses: actions/checkout@v4
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          path: build
 
       - name: Log in to the Container registry
         uses: docker/login-action@v3
@@ -47,8 +46,8 @@ jobs:
       - name: Build and push Docker php-fpm image
         uses: docker/build-push-action@v5
         with:
-          context: "{{defaultContext}}:./app/docker"
-          dockerfile: ./docker/development/php-fpm/Dockerfile
+          context: /build/app/docker
+          dockerfile: /build/app/docker/development/php-fpm/Dockerfile
           push: true
           tags: ${{ steps.meta-php-fpm.outputs.tags }}
           labels: ${{ steps.meta-php-fpm.outputs.labels }}
@@ -57,8 +56,8 @@ jobs:
       - name: Build and push Docker php-cli image
         uses: docker/build-push-action@v5
         with:
-          context: "{{defaultContext}}:./app/docker"
-          dockerfile: ./docker/development/php-cli/Dockerfile
+          context: /build/app/docker
+          dockerfile: /build/app/docker/development/php-cli/Dockerfile
           push: true
           tags: ${{ steps.meta-php-cli.outputs.tags }}
           labels: ${{ steps.meta-php-cli.outputs.labels }}
