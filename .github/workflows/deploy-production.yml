@@ -44,8 +44,8 @@ jobs:
       - name: Build and push Docker php-fpm image
         uses: docker/build-push-action@v5
         with:
-          context: "${{ GITHUB_WORKSPACE }}/app/docker"
-          dockerfile: "${{ GITHUB_WORKSPACE }}/app/docker/development/php-fpm/Dockerfile"
+          context: "${{ github.workspace }}/app/docker"
+          dockerfile: "${{ github.workspace }}/app/docker/development/php-fpm/Dockerfile"
           push: true
           tags: ${{ steps.meta-php-fpm.outputs.tags }}
           labels: ${{ steps.meta-php-fpm.outputs.labels }}
@@ -54,8 +54,8 @@ jobs:
       - name: Build and push Docker php-cli image
         uses: docker/build-push-action@v5
         with:
-          context: "${{ GITHUB_WORKSPACE }}/app/docker"
-          dockerfile: "${{ GITHUB_WORKSPACE }}/build/app/docker/development/php-cli/Dockerfile"
+          context: "${{ github.workspace }}/app/docker"
+          dockerfile: "${{ github.workspace }}/build/app/docker/development/php-cli/Dockerfile"
           push: true
           tags: ${{ steps.meta-php-cli.outputs.tags }}
           labels: ${{ steps.meta-php-cli.outputs.labels }}
