@@ -21,8 +21,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          path: build
 
       - name: Log in to the Container registry
         uses: docker/login-action@v3
@@ -46,8 +44,8 @@ jobs:
       - name: Build and push Docker php-fpm image
         uses: docker/build-push-action@v5
         with:
-          context: /build/app/docker
-          dockerfile: /build/app/docker/development/php-fpm/Dockerfile
+          context: "${{ GITHUB_WORKSPACE }}/app/docker"
+          dockerfile: "${{ GITHUB_WORKSPACE }}/app/docker/development/php-fpm/Dockerfile"
           push: true
           tags: ${{ steps.meta-php-fpm.outputs.tags }}
           labels: ${{ steps.meta-php-fpm.outputs.labels }}
@@ -56,8 +54,8 @@ jobs:
       - name: Build and push Docker php-cli image
         uses: docker/build-push-action@v5
         with:
-          context: /build/app/docker
-          dockerfile: /build/app/docker/development/php-cli/Dockerfile
+          context: "${{ GITHUB_WORKSPACE }}/app/docker"
+          dockerfile: "${{ GITHUB_WORKSPACE }}/build/app/docker/development/php-cli/Dockerfile"
           push: true
           tags: ${{ steps.meta-php-cli.outputs.tags }}
           labels: ${{ steps.meta-php-cli.outputs.labels }}
