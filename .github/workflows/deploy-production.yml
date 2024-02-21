@@ -55,7 +55,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: "${{ github.workspace }}/app/docker"
-          dockerfile: "${{ github.workspace }}/build/app/docker/development/php-cli/Dockerfile"
+          dockerfile: "${{ github.workspace }}/app/docker/development/php-cli/Dockerfile"
           push: true
           tags: ${{ steps.meta-php-cli.outputs.tags }}
           labels: ${{ steps.meta-php-cli.outputs.labels }}
