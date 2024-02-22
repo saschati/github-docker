@@ -36,13 +36,13 @@ jobs:
         id: meta-php-fpm
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/php-fpm
+          images: ${{ env.REGISTRY }}/php-fpm:${{ env.TAG }}
 
       - name: Extract metadata (tags, labels) for Docker php-cli
         id: meta-php-cli
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/php-cli
+          images: ${{ env.REGISTRY }}/php-cli:${{ env.TAG }}
 
       - name: Build and push Docker php-fpm image
         uses: docker/build-push-action@v5
