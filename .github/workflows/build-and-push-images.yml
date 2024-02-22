@@ -7,8 +7,7 @@ on:
 
 # Defines two custom environment variables for the workflow. These are used for the Container registry domain, and a name for the Docker image that this workflow builds.
 env:
-#  REGISTRY: ghcr.io
-  REGISTRY: docker.pkg.github.com
+  REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
   TAG: ${{ github.sha }}
 
@@ -38,13 +37,17 @@ jobs:
         id: meta-php-fpm
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/php-fpm
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=sha,format=short,prefix=php-fpm-
 
       - name: Extract metadata (tags, labels) for Docker php-cli
         id: meta-php-cli
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/php-cli
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=sha,format=short,prefix=php-cli-
 
       - name: Build and push Docker php-fpm image
         uses: docker/build-push-action@v5
