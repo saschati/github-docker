@@ -6,14 +6,14 @@ x-docker-data: &env-variables
 services:
 
     production-php-fpm:
-        image: docker.pkg.github.com/saschati/github-docker/php-fpm:latest
+        image: ghcr.io/saschati/github-docker:php-fpm
         environment:
             <<: *env-variables
         volumes:
             - ./app:/app
 
     production-php-cli:
-        image: docker.pkg.github.com/saschati/github-docker/php-cli:latest
+        image: ghcr.io/saschati/github-docker:php-cli
         environment:
             <<: *env-variables
         volumes:
