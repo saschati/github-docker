@@ -32,17 +32,17 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-#      - name: Extract metadata (tags, labels) for Docker php-fpm
-#        id: meta-php-fpm
-#        uses: docker/metadata-action@v5
-#        with:
-#          images: ${{ env.REGISTRY }}/php-fpm
-#
-#      - name: Extract metadata (tags, labels) for Docker php-cli
-#        id: meta-php-cli
-#        uses: docker/metadata-action@v5
-#        with:
-#          images: ${{ env.REGISTRY }}/php-cli
+      - name: Extract metadata (tags, labels) for Docker php-fpm
+        id: meta-php-fpm
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/php-fpm
+
+      - name: Extract metadata (tags, labels) for Docker php-cli
+        id: meta-php-cli
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/php-cli
 
       - name: Build and push Docker php-fpm image
         uses: docker/build-push-action@v5
@@ -50,9 +50,9 @@ jobs:
           context: ./app/docker
           file: ./app/docker/development/php-fpm/Dockerfile
           push: true
-#          tags: ${{ steps.meta-php-fpm.outputs.tags }}
-#          labels: ${{ steps.meta-php-fpm.outputs.labels }}
-          tags: ${{ env.REGISTRY }}/php-fpm:${{ env.TAG }},${{ env.REGISTRY }}/php-fpm:latest
+          tags: ${{ steps.meta-php-fpm.outputs.tags }}
+          labels: ${{ steps.meta-php-fpm.outputs.labels }}
+#          tags: ${{ env.REGISTRY }}/php-fpm:${{ env.TAG }},${{ env.REGISTRY }}/php-fpm:latest
 
       - name: Build and push Docker php-cli image
         uses: docker/build-push-action@v5
@@ -60,9 +60,9 @@ jobs:
           context: ./app/docker
           file: ./app/docker/development/php-cli/Dockerfile
           push: true
-#          tags: ${{ steps.meta-php-cli.outputs.tags }}
-#          labels: ${{ steps.meta-php-cli.outputs.labels }}
-          tags: ${{ env.REGISTRY }}/php-cli:${{ env.TAG }},${{ env.REGISTRY }}/php-cli:latest
+          tags: ${{ steps.meta-php-cli.outputs.tags }}
+          labels: ${{ steps.meta-php-cli.outputs.labels }}
+#          tags: ${{ env.REGISTRY }}/php-cli:${{ env.TAG }},${{ env.REGISTRY }}/php-cli:latest
 
       - name: Show TAG
         run: |
