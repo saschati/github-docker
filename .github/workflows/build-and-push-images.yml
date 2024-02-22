@@ -65,4 +65,5 @@ jobs:
 
       - name: Show TAG
         run: |
-          echo "$(git rev-parse --short HEAD)"
+          sha_short=$(git rev-parse --short HEAD)
+          echo $sha_short

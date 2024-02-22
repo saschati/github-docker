@@ -1,2 +1,1 @@
-<?php
-    echo getenv('TEST_ENV');
+<?= getenv('TEST_DATA') . "\n" ?>
