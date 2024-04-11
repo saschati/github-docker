@@ -21,6 +21,7 @@ jobs:
       - run: |
           for changed_file in ${{ steps.files.outputs.all }}; do
             if [[ $changed_file == app/docker/* ]]; then
+                echo "Set Need Docker Build Variable"
                 echo "is_need_docker_build=true" >> $GITHUB_OUTPUT
                 break
             fi
