@@ -32,7 +32,7 @@ RUN addgroup -g 1000 app && adduser -u 1000 -G app -s /bin/sh -D app
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/bin --filename=composer --quiet \
     && rm -rf /root/.composer/cache
 
-# some change 7
+# some change 8
 
 WORKDIR /app
 

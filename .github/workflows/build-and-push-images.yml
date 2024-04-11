@@ -20,7 +20,7 @@ jobs:
         uses: jitterbit/get-changed-files@v1
       - run: |
           for changed_file in ${{ steps.files.outputs.all }}; do
-            if [[ $changed_file == /app/docker/* ]]; then
+            if [[ $changed_file == app/docker/* ]]; then
                 echo "Do something with this ${changed_file}."
             fi
           done
