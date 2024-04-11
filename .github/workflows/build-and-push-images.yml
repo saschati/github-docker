@@ -36,8 +36,8 @@ jobs:
     needs: work_data
     steps:
       - run: |
-          echo "Show short sha ${{needs.prepare_work_data.outputs.sha_short}}"
-          echo "Is Need Docker Build ${{needs.prepare_work_data.outputs.is_need_docker_build}}"
+          echo "Show short sha ${{needs.work_data.outputs.sha_short}}"
+          echo "Is Need Docker Build ${{needs.work_data.outputs.is_need_docker_build}}"
 
 
 #  build-and-push-image:
