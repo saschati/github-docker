@@ -113,7 +113,6 @@ jobs:
 
   do-something-after-docker-build:
     name: Do something after all the docker images have faded
-    if: needs.work_data.outputs.is_need_docker_build == 'true'
     runs-on: ubuntu-latest
     needs: [ work_data, build-and-push-image-php-fpm, build-and-push-image-php-cli ]
 
@@ -121,4 +120,8 @@ jobs:
       - name: Show work data
         run: |
           echo "Show short sha ${{needs.work_data.outputs.sha_short}}"
+
+      - name: Show work data only if docker build image
+        if: needs.work_data.outputs.is_need_docker_build == 'true'
+        run: |
           echo "Is Need Docker Build ${{needs.work_data.outputs.is_need_docker_build}}"
