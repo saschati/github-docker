@@ -33,7 +33,7 @@ jobs:
           echo "sha_short=${GITHUB_SHA::8}" >> $GITHUB_OUTPUT
 
   job2:
-#    if: needs.work_data.outputs.is_need_docker_build == 'true'
+    if: needs.work_data.outputs.is_need_docker_build == 'true'
     runs-on: ubuntu-latest
     needs: work_data
     steps:
