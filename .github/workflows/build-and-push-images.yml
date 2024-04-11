@@ -13,14 +13,16 @@ jobs:
     runs-on: ubuntu-latest
     # Expose step outputs as job outputs
     outputs:
-#      git_diff: ${{ steps.set_git_diff.outputs.diff }}
+      is_need_docker_build: ${{ steps.set_git_diff.outputs.is_need_docker_build }}
       sha_short: ${{ steps.set_git_sha_short.outputs.sha_short }}
     steps:
       - id: files
         uses: jitterbit/get-changed-files@v1
       - run: |
           for changed_file in ${{ steps.files.outputs.all }}; do
-            echo "Do something with this ${changed_file}."
+            if [["$changed_file" =~ ^app\/docker]]; then
+              echo "Do something with this ${changed_file}."
+            fi
           done
 
       - id: set_git_sha_short
