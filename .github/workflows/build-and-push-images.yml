@@ -31,7 +31,7 @@ jobs:
   job2:
 #    if: needs.job1.outputs.output1 != 'hello'
     runs-on: ubuntu-latest
-    needs: job1
+    needs: prepare_work_data
     steps:
       - run: echo ${{needs.prepare_work_data.outputs.sha_short}}
 
