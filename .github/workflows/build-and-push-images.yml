@@ -21,7 +21,8 @@ jobs:
       - run: |
           for changed_file in ${{ steps.files.outputs.all }}; do
             if [[ $changed_file == app/docker/* ]]; then
-                echo "Do something with this ${changed_file}."
+                echo "is_need_docker_build=true" >> $GITHUB_OUTPUT
+                break
             fi
           done
 
@@ -34,7 +35,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: prepare_work_data
     steps:
-      - run: echo ${{needs.prepare_work_data.outputs.sha_short}}
+      - run: |
+          echo "Show short sha ${{needs.prepare_work_data.outputs.sha_short}}"
+          echo "Is Need Docker Build ${{needs.prepare_work_data.outputs.is_need_docker_build}}"
 
 
 #  build-and-push-image:
