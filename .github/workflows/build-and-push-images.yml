@@ -13,15 +13,16 @@ jobs:
     runs-on: ubuntu-latest
     # Expose step outputs as job outputs
     outputs:
-      is_need_docker_build: ${{ steps.set_git_diff.outputs.is_need_docker_build }}
+      is_need_docker_build: ${{ steps.set_variable_by_files_diff.outputs.is_need_docker_build }}
       sha_short: ${{ steps.set_git_sha_short.outputs.sha_short }}
     steps:
       - id: files
         uses: jitterbit/get-changed-files@v1
-      - run: |
+
+      - id: set_variable_by_files_diff
+        run: |
           for changed_file in ${{ steps.files.outputs.all }}; do
             if [[ $changed_file == app/docker/* ]]; then
-                echo "Set Need Docker Build Variable"
                 echo "is_need_docker_build=true" >> $GITHUB_OUTPUT
                 break
             fi
