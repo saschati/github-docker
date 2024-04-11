@@ -25,7 +25,7 @@ jobs:
 
       - id: set_git_sha_short
         run: |
-          echo "SHORT_SHA=$("${{ github.sha }}".SubString(0, 8))" >> $env:GITHUB_ENV
+          echo "SHORT_SHA=$(${GITHUB_SHA::7})" >> $env:GITHUB_ENV
 
   job2:
 #    if: needs.job1.outputs.output1 != 'hello'
