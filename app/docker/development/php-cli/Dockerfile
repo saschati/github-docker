@@ -35,5 +35,3 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/bin --fil
 WORKDIR /app
 
 USER app
-
-# Change some in file 1
