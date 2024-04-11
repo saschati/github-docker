@@ -113,6 +113,7 @@ jobs:
 
   do-something-after-docker-build:
     name: Do something after all the docker images have faded
+    if: ${{ always() }}
     runs-on: ubuntu-latest
     needs: [ work_data, build-and-push-image-php-fpm, build-and-push-image-php-cli ]
 
