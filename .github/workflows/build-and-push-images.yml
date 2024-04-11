@@ -18,13 +18,13 @@ jobs:
     steps:
       - id: files
         uses: jitterbit/get-changed-files@v1
-      - run: |
+        run: |
           for changed_file in ${{ steps.files.outputs.all }}; do
             echo "Do something with this ${changed_file}."
           done
 
       - id: set_git_sha_short
-        run: |
+        run:
           sha_short=$(git rev-parse --short HEAD)
           echo "sha_short=$sha_short" >> "$GITHUB_OUTPUT"
 
