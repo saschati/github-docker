@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Use this script to test if a given TCP host/port are available
 
-# some change 4
+# some change 7
 
 WAITFORIT_cmdname=${0##*/}
 
